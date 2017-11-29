@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <head>
+
+<body>
+
+<%= render 'layouts/header' %>
+
+<div class="container">
+  <% if notice %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <% end %>
+  <% if alert %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= alert %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  <% end %>
+  <div class="row">
+    <!--<div class="col">-->
+      <!--<ul class="hmenu">-->
+      <!--<%= render 'devise/menu/registration_items' %>-->
+      <!--<%= render 'devise/menu/login_items' %>-->
+      <!--</ul>-->
+      <%= yield %>
+    <!--</div>-->
+  </div>
+</div>
+
+<% unless flash.empty? %>
+    <script type="text/javascript">
+        <% flash.each do |f| %>
+        <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+        toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+    </script>
+<% end %>
+</body>
+</html>

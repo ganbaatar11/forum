@@ -1,0 +1,32 @@
+<div class="col-md-10 offset-md-1">
+  <h4>Top questions</h4>
+  <hr>
+  <!--<%= @questions.as_json %>-->
+
+  <ul class="list-unstyled">
+    <% @questions.each do |question| %>
+        <li class="media">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">
+              <div class="d-inline-block p-1 text-center">
+                <h5><%= question.votes %></h5>
+                votes
+              </div>
+              <div class="d-inline-block p-1 text-center">
+                <h5><%= question.answer_size %></h5>
+                answers
+              </div>
+              <div class="d-inline-block p-1 text-center">
+                <h5><%= question.viewed %></h5>
+                views
+              </div>
+              <div class="d-inline-block p-1">
+                <%= link_to(show_question_path(question.id)) {question.question} %>
+              </div>
+            </h5>
+          </div>
+        </li>
+        <hr>
+    <% end %>
+  </ul>
+</div>
